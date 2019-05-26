@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Passion{% endblock %}
+
+{% block body %}
+    <main class="container">
+        <object type="application/pdf" align="middle" width="100%" height="1200px">
+            <param name="src" value="{{ asset('./cv/cv_amine_hadef.pdf') }}" />
+        </object>
+    </main>
+{% endblock %}

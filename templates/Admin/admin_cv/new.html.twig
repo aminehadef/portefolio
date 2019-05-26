@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CV{% endblock %}
+{% block body %}
+    <main class="container">
+        {{ form_start(form) }}
+            <div class="col">
+                <div class="row">
+                    <div class="col">
+                        {{form_row(form.cv)}}
+                    </div>
+                </div>
+                {{form_row(form.enabled)}}
+                <button class="btn btn-primary" type="submit">add</button>
+            </div>
+        {{ form_end(form) }}
+    </main>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Users{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">username</th>
+                    <th scope="col">level</th>
+                    <th scope="col">avatar</th>
+                    <th scope="col">actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                    <tr>
+                        <td scope="row">{{ user.id }}</td>
+                        <td>{{ user.username }}</td>
+                        <td>{{ user.level }}</td>
+                        <td> <img class="img-profil" src="{{ asset('./images_avatre_admin/' ~ user.filename) | imagine_filter('avatar') }}"></td>
+                        <td>
+                            {% if app.user.id == user.id or app.user.level > 2 %}
+                                <a href="{{ path('edit_user' , {id : user.id}) }}"><i class="far fa-edit"></i></a>
+                                |  
+                                <form action="{{ path('delet_user', {id : user.id}) }}" style="display: inline-block;">
+                                    <button class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
+                                    <input type="hidden" value="{{ csrf_token('delete' ~ user.id) }}">
+                                </form>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

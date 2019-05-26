@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}connexion{% endblock %}
+{% block h1 %}connexion{% endblock %}
+{% block body %}
+    <main class="container">
+        <div class="container-fluid">
+        <div class="jumbotron aboutMe">
+            <h2>Connexion</h2>
+        </div>
+        {% if error %}
+            <div class="alert alert-danger">
+                {{ error.messageKey | trans(error.messagedata, 'security') }}
+            </div>
+        {% endif %}
+        
+        <form action={{ path('login') }} method='post'>
+            <div class="form-group">
+                <label for="username">Nom d'utilisateur</label>
+                <input type="text" id="username" name="_username" class="form-control" value={{ lastUserName }}>
+            </div>
+            <div class="form-group">
+                <label for="password">mot de passe</label>
+                <input type="password" id="password" name="_password" class="form-control">
+            </div>
+            <button class="btn btn-primary">Se connecter</button>
+        </form>
+        </div>
+    </main>
+{% endblock %}

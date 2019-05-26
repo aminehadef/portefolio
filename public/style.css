@@ -1,0 +1,198 @@
+.header{
+    background: url("img/no_change/bg_header_portfolio-Copie-ConvertImage.jpg") no-repeat center center fixed; 
+    background-size: cover;
+    background-position-x: right;
+
+    height: 600px;
+
+    margin-top: 28px;
+    transform: skewY(-2.5deg);
+}
+header{
+    height: 100px;
+}
+nav{
+    position: fixed;
+    width: 100%;
+}
+nav a img {
+    width: 35px;
+}
+.carousel-control-prev:hover{
+    background-color: rgba(255, 255, 255, 0.4);
+}
+.carousel-control-next:hover{
+    background-color: rgba(255, 255, 255, 0.4);
+}
+.logo{
+    position: relative;
+    -webkit-animation-name: animLogo;
+    -webkit-animation-duration: 3s; 
+    -webkit-animation-fill-mode: forwards;
+    animation-name: animLogo;
+    animation-duration: 3s;  
+    animation-fill-mode: forwards;
+    width: 400px;
+}
+.titleLogo{
+    position: relative;
+    -webkit-animation-name: animLogoTitle;
+    -webkit-animation-duration: 3s; 
+    -webkit-animation-fill-mode: forwards;
+    animation-name: animLogoTitle;
+    animation-duration: 3s;  
+    animation-fill-mode: forwards;
+}
+.photoamine{
+    width: 20%;
+    border-radius: 100px;
+    display: block;
+    margin: -40px auto 0 auto;
+}
+.icone{
+    width: 50%;
+    display: block;
+    margin: 0 auto;
+}
+.b{
+    display: block;
+    margin: 0 auto 50px auto !important;
+    border: none;
+}
+@-webkit-keyframes animLogoTitle {
+    from {
+        top: -800px;
+    }
+    to {
+        top: -700px;
+    }
+  }
+  
+  @keyframes animLogoTitle {
+    from {
+        top: -800px;
+    }
+    to {
+        top: -700px;
+    }
+  }
+@-webkit-keyframes animLogo {
+    from {
+        top: -800px;
+    }
+    to {
+        top: -548px;
+    }
+  }
+  
+  @keyframes animLogo {
+    from {
+        top: -800px;
+    }
+    to {
+        top: -548px;
+    }
+  }
+h1{
+    position: relative;
+    top: -700px;
+    color: white;
+    font-family: 'Monoton';
+    font-size: 3em;
+    user-select : none;
+}
+.c{
+    box-shadow: 3px 3px 7px -5px black;
+}
+.contCard{
+    margin-left: 5%;
+}
+.active{
+    height: 250px;
+}
+.contForm{
+    width: 70%;
+    margin: 0 auto;
+    margin-top: 60px;
+    margin-bottom: 40px;
+}
+.NewProject{
+    width: 70%;
+    margin: 0 auto;
+    margin-top: 60px;
+    margin-bottom: 40px;
+}
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+    background: grey; 
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: lightslategrey; 
+}
+@media screen and (max-width: 995px) {
+    .card-columns {
+        -webkit-column-count: 3;
+        -moz-column-count: 3;
+        column-count: 1;
+        -webkit-column-gap: 1.25rem;
+        -moz-column-gap: 1.25rem;
+        column-gap: 1.25rem;
+        orphans: 1;
+        widows: 1;
+    }
+}
+@media screen and (max-width: 770px) {
+
+}
+@media screen and (max-width: 400px) {
+    .logo{
+        width: 230px;
+    }
+    .titleLogo{
+        margin-top: 65px;
+        font-size: 1.5em;
+    }
+}
+.image_jumbo{
+    width: 60%;
+}
+.imgslider{
+    width: 30px;
+}
+a{
+    text-decoration: none;
+}
+a:hover{
+    text-decoration: none;
+}
+.show-img{
+    height: 500px;
+}
+.img-profil{
+    border-radius: 100%;
+}
+.bootstrap-tagsinput{
+    width: 100%;
+}
+.label-info {
+    background-color: #5bc0de;
+}
+.label {
+    display: inline;
+    padding: .2em .6em .3em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25em;
+}

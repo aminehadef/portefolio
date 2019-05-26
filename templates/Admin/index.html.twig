@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin{% endblock %}
+{% block body %}
+    <main class="container">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">page</th>
+                    <th scope="col">actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Project</td>
+                    <td><a href="{{ path('new_project') }}"> <i class="fas fa-plus-circle"></i></a> | <a href="{{ path('admin_project') }}"><i class="fas fa-eye"></i></a></td>
+                </tr>
+                <tr>
+                    <td>Passion</td>
+                    <td><a href="{{ path('new_passion') }}"> <i class="fas fa-plus-circle"></i></a> | <a href="{{ path('admin_passion') }}"><i class="fas fa-eye"></i></a></td>
+                </tr>
+                <tr>
+                    <td>contact</td>
+                    <td><a href="{{ path('new_contact') }}"> <i class="fas fa-plus-circle"></i></a> | <a href="{{ path('admin_contact') }}"><i class="fas fa-eye"></i></a></td>
+                </tr>
+                {% if app.user.level > 2 %}
+                    <tr>
+                        <td>cv</td>
+                        <td><a href="{{ path('new_cv')}}"> <i class="fas fa-plus-circle"></i></a> | <a href="{{ path('admin_show') }}"><i class="fas fa-eye"></i></a></td>
+                    </tr>
+                    <tr>
+                        <td>User</td>
+                        <td><a href="{{ path('new_user') }}"> <i class="fas fa-plus-circle"></i></a> | <a href="{{ path('user') }}"><i class="fas fa-eye"></i></a></td>
+                    </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </main>
+{% endblock %}

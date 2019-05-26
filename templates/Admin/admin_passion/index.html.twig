@@ -1,0 +1,87 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Passion{% endblock %}
+{% block body %}
+    <main class="container">
+        {% for message in app.flashes('massage') %}
+            <div class="alert alert-success" role="alert">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        {% endfor %}
+        <div class="jumbotron aboutMe">
+            <h2>All Passion</h2>
+            <hr class="my-4">
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim reprehenderit rem temporibus, consectetur quia magnam eum eveniet, culpa earum saepe unde ea quasi cupiditate rerum numquam omnis molestiae quidem dolorem!
+            </p>
+        </div>
+        <div class="card-columns">
+            {% for passion in passions %}
+                <div class="card c">
+                    <div id="carousel{{passion.id}}" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            {% for key, image in passion.images %}
+                                <div class="carousel-item {% if key == 0 %} {{'active'}} {% endif %}">
+                                    <img class="card-img-top" src= {{ asset("./images_passion/" ~ image.path) | imagine_filter('card')}} alt="Card image cap">
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <a class="carousel-control-prev" href="#carousel{{passion.id}}" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carousel{{passion.id}}" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ passion.title }}</h5>
+                        <p class="card-text js-description">{{ passion.description | slice(0, 70) }}....</p>
+                        <p>
+                            <small class="label label-primary" style="background: blueviolet;">crée par {{ passion.user.username }}</small>                        
+                        </p>
+                            {% if passion.lastEditBy != null %}
+                                <p>
+                                    <small class="label label-primary" style="background: #f0ad4e;">dernier edition par {{ passion.lastEditBy }}</small>
+                                </p>
+                            {% endif %}
+                        <a href="{{ path("edit_passion", {id : passion.id }) }}" class="btn btn-primary">edit</a>
+                        {% if app.user.level > 2 or passion.user.id == app.user.id %}
+                            <form class="js-selector-delete" action="{{ path('delete_passion', {id : passion.id}) }}" style="display: inline-block;">
+                                <button class="btn btn-danger">delete</button>
+                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ passion.id) }}">
+                            </form>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </main>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script>
+
+            function deleteProject(ev){
+                ev.preventDefault();
+
+                const url = this.action
+                const token = this.children[1].value
+
+                axios.get(url, {
+                    params : {
+                        '_token' : token
+                    }
+                }).then((response)=>{
+                    this.parentElement.parentElement.style.display = 'none'
+                })
+            }
+            
+            document.querySelectorAll('.js-selector-delete').forEach(function(elm){
+                elm.addEventListener('click',deleteProject)
+
+            })
+        </script>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Contact{% endblock %}
+{% block body %}
+    <main class="container">
+                {{ form_start(form) }}
+            <div class="col">
+                <div class="row">
+                    <div class="col">
+                        {{form_row(form.class)}}
+                    </div>
+                    <div class="col">
+                        {{form_row(form.title)}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        {{form_row(form.contact)}}
+                    </div>
+                </div>
+                <button class="btn btn-primary" type="submit">add</button>
+            </div>
+        {{ form_end(form) }}
+    </main>
+{% endblock %}

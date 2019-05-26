@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Project{% endblock %}
+
+{% block body %}
+    <main class="container">
+        
+        {{ form_start(form) }}
+            <div class="col">
+                <div class="row">
+                    <div class="col">
+                        {{form_row(form.title)}}
+                    </div>
+                    <div class="col">
+                        {{form_row(form.path)}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        {{form_row(form.tagsText)}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        {{form_row(form.description)}}
+                    </div>
+                </div>
+                {{form_row(form.enabled)}}
+                <button class="btn btn-primary" type="submit">add</button>
+            </div>
+        {{ form_end(form) }}
+    </main>
+    {% block javascripts %}
+    
+    {% endblock %}
+{% endblock %}

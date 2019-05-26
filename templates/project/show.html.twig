@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Projects {% endblock %}
+{% block body %}
+    <main class="container">
+        <div class="jumbotron aboutMe">
+            <h2>{{ project.title }}</h2>
+            <hr class="my-4">
+            <p>
+                {{ project.description }}
+            </p>
+            <div id="carousel{{project.id}}" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner show-img">
+                    {% for key, image in project.images %}
+                        <div class="carousel-item {% if key == 0 %} {{'active'}} {% endif %}">
+                            <img class="card-img-top" src= {{ asset("./images_projects/" ~ image.path) | imagine_filter('big')}} alt="Card image cap">
+                        </div>
+                    {% endfor %}
+                </div>
+                <a class="carousel-control-prev" href="#carousel{{project.id}}" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carousel{{project.id}}" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+    </main>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}edit Project{% endblock %}
+
+{% block body %}
+    <main class="container">
+        <div class="row">
+            {% for key, image in passion.images %}
+                    <div class="col-sm-1">
+                        <a class="js_selector" href="{{ path('delete_image_passion', { id_passion : passion.id , id_image : image.id} ) }}"><i class="fas fa-times-circle js-select"></i></a>
+                        <div class="thumbnail">
+                            <img src="{{ asset("./images_passion/" ~ image.path) | imagine_filter('avatar') }}" alt="Lights" style="width:100%">
+                        </div>
+                    </div>
+            {% endfor %}
+      </div>
+        {{ form_start(form) }}
+            <div class="col">
+                <div class="row">
+                    <div class="col">
+                        {{form_row(form.title)}}
+                    </div>
+                    <div class="col">
+                        {{form_row(form.path)}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        {{form_row(form.description)}}
+                    </div>
+                </div>
+                {{form_row(form.enabled)}}
+                <button class="btn btn-primary" type="submit">add</button>
+            </div>
+        {{ form_end(form) }}
+    </main>
+
+{% endblock %}
+{% block javascripts %}
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <script>
+        function deletImage(ev){
+            ev.preventDefault()
+
+            const url = this.href
+            console.log(url)
+            axios.get(url).then((response)=>{
+                this.parentElement.style.display = 'none'
+            })
+        }
+
+        document.querySelectorAll('.js_selector').forEach(function(elm){
+            elm.addEventListener('click', deletImage)
+        })
+    </script>
+{% endblock %}

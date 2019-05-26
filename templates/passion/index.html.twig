@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Passion{% endblock %}
+{% block body %}
+    <main class="container">
+        <div class="jumbotron aboutMe">
+            <h2>All Passion</h2>
+            <hr class="my-4">
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim reprehenderit rem temporibus, consectetur quia magnam eum eveniet, culpa earum saepe unde ea quasi cupiditate rerum numquam omnis molestiae quidem dolorem!
+            </p>
+        </div>
+        <div class="card-columns">
+            
+            {% for passion in passions %}
+                {% if passion.enabled == true %}
+                    <div class="card c">
+                        {% if  passion.images|length > 1 %}
+                            <div id="carousel{{passion.id}}" class="carousel slide" data-ride="carousel">
+                                <div class="carousel-inner">
+                                    {% for key, image in passion.images %}
+                                        <div class="carousel-item {% if key == 0 %} {{'active'}} {% endif %}">
+                                            <img class="card-img-top" src= {{ asset("./images_passion/" ~ image.path) | imagine_filter('card')}} alt="Card image cap">
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                                <a class="carousel-control-prev" href="#carousel{{passion.id}}" role="button" data-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="carousel-control-next" href="#carousel{{passion.id}}" role="button" data-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </div>
+                            {% elseif  passion.images|length == 1 %}
+                                {% for key, image in passion.images %}
+                                    <img class="card-img-top" src= {{ asset("./images_passion/" ~ image.path) | imagine_filter('card')}} alt="Card image cap">
+                                {% endfor %}
+                                
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title">{{ passion.title }}</h5>
+                            <p class="card-text js-description">{{ passion.description | slice(0, 70) }}....</p>
+                            <a href="{{ path('show_passion', {id : passion.id}) }}" class="btn btn-primary">show!</a>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </main>
+{% endblock %}
+

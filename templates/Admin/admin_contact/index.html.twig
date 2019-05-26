@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contact{% endblock %}
+{% block body %}
+    <main class="container">
+        <div class="jumbotron aboutMe">
+            <h2>All Contact</h2>
+            <hr class="my-4">
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim reprehenderit rem temporibus, consectetur quia magnam eum eveniet, culpa earum saepe unde ea quasi cupiditate rerum numquam omnis molestiae quidem dolorem!
+            </p>
+        </div>
+        <div class="container-fluid d-flex flex-wrap">
+            {% for contact in contacts %}
+                <div class="card c b" style="width: 18rem;">
+                    <i class="{{ contact.class }}"></i>
+                    <div class="card-body text-center">
+                        <h5 class="card-title">{{ contact.title }}</h5>
+                        <p class="card-text">{{ contact.contact }}</p>
+                        <a class="btn btn-primary" href="{{ path('edit_contact', {id: contact.id}) }}">edit</a>
+                        <form action="{{ path('delete_contact', {id: contact.id}) }}" style="display: inline-block;">
+                            <button class="btn btn-danger">delete</button>
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ contact.id) }}">
+                        </form>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </main>
+{% endblock %}

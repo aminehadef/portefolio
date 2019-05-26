@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Project{% endblock %}
+
+{% block body %}
+    <main class="container">
+        
+        {{ form_start(form) }}
+            <div class="form-error">
+                {{ form_errors(form.username) }}
+                {{ form_errors(form.password) }}
+                {{ form_errors(form.level) }}
+                {{ form_errors(form.filename) }}
+            </div>
+            <div class="col">
+                <div class="row">
+                    <div class="col js-selector">
+                        {{ form_label(form.username) }}
+                        {{form_widget(form.username)}}
+                    </div>
+                    <div class="col js-selector">
+                        {{ form_label(form.password) }}
+                        {{form_widget(form.password)}}
+                    </div>
+                    <div class="col js-selector">
+                        {{ form_label(form.level) }}
+                        {{form_widget(form.level)}}
+                    </div>
+                    <div class="col js-selector">
+                        {{ form_label(form.filename) }}
+                        {{form_widget(form.filename)}}
+                    </div>
+                </div>
+                <div class="col mt-3">
+                    <div class="row">
+                        {{form_widget(form.submit)}}
+                    </div>
+                </div>
+            </div>
+        {{ form_end(form) }}
+    </main>
+
+    <script>
+        var invalidfeedback = document.querySelectorAll('.js-selector').forEach(function(elm){
+
+            invalidfeedback = elm.childNodes[1].childNodes[1]
+            if(invalidfeedback != null){
+                invalidfeedback.classList.remove("invalid-feedback")
+                invalidfeedback.classList.remove("d-block")
+                invalidfeedback.style.display = "none";
+            }
+        })
+     </script>
+
+{% endblock %}
